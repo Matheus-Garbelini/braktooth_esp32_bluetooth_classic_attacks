@@ -2,7 +2,7 @@
 
 # BrakTooth BT Fuzzer (WDissector)
 
-
+#### Download the compressed folder of this project via http://tinyurl.com/braktooth or our [Anonymous Google Drive](https://drive.google.com/file/d/1uQRhYaIwqVJmB8EEV5Sz5OeU-22y2Obv/view) link!
 
 ## 1) Requirements
 
