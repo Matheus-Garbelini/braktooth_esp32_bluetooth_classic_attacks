@@ -3,13 +3,10 @@
 
 # BrakTooth Proof of Concept
 
-# (BT Exploiter from WDissector Project)
-
-
 
 ## 1) Requirements
 
-**BrakTooth** requires a specific BT hardware development kit (**ESP-WROVER-KIT**) to be able to launch the attack since LMP packets cannot be sent from the host in normal Bluetooth Hardware.
+[**BrakTooth**](https://www.braktooth.com/) requires a specific BT hardware development kit (**ESP-WROVER-KIT**) to be able to launch the attack since LMP packets cannot be sent from the host in normal Bluetooth Hardware.
 
 * ##### **Ubuntu 18.04** 
 
@@ -18,7 +15,7 @@
 
 * ##### Hardware Board: **ESP-WROVER-KIT**
   
-  <img src="./docs/esp32.jpg" style="zoom: 15%;" />
+  <img src="./docs/esp32.jpg" style="zoom: 25%;" />
 
 
 
@@ -26,7 +23,7 @@
 
 ##### A) Install (flash) PoC firmware on ESP-WROVER-KIT
 
-First, connect **ESP32-WROVER-KIT** to your PC. You can check if two serial ports were added by running `ls /dev/ttyUSB*`. Normally **ESP32-WROVER-KIT** adds two serial ports such as `/dev/ttyUSB0` and `/dev/ttyUSB1`. We want the second serial port which is used for serial communication with **ESP32**.
+First, connect **ESP32-WROVER-KIT** to your PC. You can check if two serial ports were added by running `ls /dev/ttyUSB*`. Normally, **ESP32-WROVER-KIT** adds two serial ports such as `/dev/ttyUSB0` and `/dev/ttyUSB1`. We want the second serial port, which is used for serial communication with **ESP32**.
 
 ```bash
 sudo apt install unzip python3-dev
@@ -64,6 +61,7 @@ BT Exploiter has several exploits which can be listed by running the following c
 
 ```bash
 sudo bin/bt_exploiter --list-exploits # Run as root
+
 Available Exploits:
 --> 'invalid_timing_accuracy'
 --> 'repeated_host_connection'
@@ -94,13 +92,13 @@ Available Exploits:
 
 ### Scan target
 
-Before launching the attack, you need to know the `BDAddress` of the target BT device. To facilitate, BT Exploiter can the `BDAddress` of targets nearby by running the following command:
+Before launching the attack, you need to know the `BDAddress` of the target BT device. To facilitate this, BT Exploiter can scan the `BDAddress` of targets nearby by running the following command:
 
 ```bash
 sudo bin/bt_exploiter --scan
 ```
 
-If **ESP32** is detect by bt_exploiter and scanning works, you should get a similar output to the Figure below.
+If **ESP32** is detected by bt_exploiter and scanning works, then you should get a similar output to the Figure below.
 
 ![](./docs/scan_output.png)
 
@@ -108,7 +106,7 @@ If **ESP32** is detect by bt_exploiter and scanning works, you should get a simi
 
 ### Launch the Attack!
 
-Now it's your turn! Choose an exploit by its name and have noted the target `BDAddress`. You need to specify both as follows to launch an exploit:
+Now it is your turn! Choose an exploit by its name and remember the target `BDAddress` where the exploit needs to be launched. You need to specify both the name of the exploit and the target `BDAddress` as follows to launch the respective attack:
 
 ```bash
 sudo bin/bt_exploiter --host-port=/dev/ttyUSB1 --target=<target bdaddress> --exploit=<exploit name>
@@ -116,13 +114,13 @@ sudo bin/bt_exploiter --host-port=/dev/ttyUSB1 --target=<target bdaddress> --exp
 
 The argument  `--target` is your target `BDAddress` and `--host-port` must match with the correct ESP32-WROVER-KIT serial port.
 
-For example, launching the exploit for **LMP AU Rand Flooding** (au_rand_flooding) can be done as follows:
+For example, launching the exploit for **LMP AU Rand Flooding** (au_rand_flooding) can be accomplished as follows:
 
 ```bash
 sudo bin/bt_exploiter --host-port=/dev/ttyUSB1 --target=a4:50:46:59:0c:90 --exploit=au_rand_flooding
 ```
 
-If the target is vulnerable you should get some anomalous behavior from the target (shutdown, reboot, etc) or simply not be able to discover it anymore when scanning for BT targets again. 
+If the target is vulnerable, then you should get some anomalous behavior from the target (shutdown, reboot, etc) or simply not be able to discover it anymore when scanning for BT targets again. 
 
 **An example of a successful attack output for a vulnerable target that shuts down after the attack is presented below.**
 
@@ -144,9 +142,9 @@ For more details on how to create BT exploits, please read **`exploit_modules_tu
 
 ### Opening the capture files in Wireshark
 
-The exploit tool includes a standalone version of **Wireshark** which includes already includes a plugin to read the customized captures saved by our tool.
+The exploit tool includes a standalone version of **Wireshark** which already includes a plugin to read the customized captures saved by our tool.
 
-Capture files are automatically saved on folder `logs/Bluetooth/capture_bluetooth.pcapng`. To open it via the custom Wireshark, run the following on the root folder of the exploiter (**bin** folder must be present on your working directory):
+Capture files are automatically saved in folder `logs/Bluetooth/capture_bluetooth.pcapng`. To open it via the custom Wireshark, run the following on the root folder of the exploiter (**bin** folder must be present on your working directory):
 
 ```bash
 ./bin/wireshark logs/Bluetooth/capture_bluetooth.pcapng
@@ -199,8 +197,8 @@ The exploiter BT options are loaded from `configs/bt_config.json` on the followi
 
 #### Security Options
 
-- **Enable Bounding** - Enabled BT Pairing. If disable all the next options has no effect.
-- **Disable Role Switch** (Checkbox) - Forces connection to reject any attempts to perform role switching. This ensure that once the master connects to a slave, their roles stay the same during the session. Exploits such as KNOB requires this so the master (being the fuzzer) can mutate the `LMP_max_encryption_key_size_req` packet. **Disable this options if the slave does not accept the connection without role switching.**
+- **Enable Bounding** - Enabled BT Pairing. If disabled, then all the next options have no effect.
+- **Disable Role Switch** (Checkbox) - Forces connection to reject any attempts to perform role switching. This ensures that once the master connects to a slave, their roles stay the same during the session. Exploits such as KNOB require this for the master (being the fuzzer) to mutate the `LMP_max_encryption_key_size_req` packet. **Disable this options if the slave does not accept the connection without role switching.**
 - **IO Capabilities** - Selects IO capabilities of the fuzzer during the pairing process according to the following:
   - Display Only = 0
   - Display Yes No = 1
