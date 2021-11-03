@@ -1,6 +1,5 @@
 
-![](./docs/braktooth_logo.png)
-
+<img src="./docs/braktooth_logo.png" width="200"/>
 
 # BrakTooth Proof of Concept
 
