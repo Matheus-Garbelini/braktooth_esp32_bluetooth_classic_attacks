@@ -195,7 +195,7 @@ The exploiter BT options are loaded from `configs/bt_config.json` on the followi
 - **Target BDADDR** - Target of the device to connect. Only applied for BT programs which **initiates** the connection. This is not applied for programs that wait for connections such as `bin/spp_counter` or `bin/a2dp_sink_demo`.
 
 
-#### Security Options
+### Security Options
 
 - **Enable Bounding** - Enabled BT Pairing. If disabled, then all the next options have no effect.
 - **Disable Role Switch** (Checkbox) - Forces connection to reject any attempts to perform role switching. This ensures that once the master connects to a slave, their roles stay the same during the session. Exploits such as KNOB require this for the master (being the fuzzer) to mutate the `LMP_max_encryption_key_size_req` packet. **Disable this options if the slave does not accept the connection without role switching.**
