@@ -18,7 +18,7 @@
 
 * ##### Hardware Board: **ESP-WROVER-KIT**
   
-  <img src="./docs/esp32.jpg" style="zoom: 25%;" />
+  <img src="./docs/esp32.jpg" style="zoom: 15%;" />
 
 
 
