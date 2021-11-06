@@ -1,5 +1,7 @@
 
-![](./docs/braktooth_logo.png)
+<p align="center">
+<img src="./docs/braktooth_logo.png" alt="mode_master" width="600" height="auto" />
+</p>
 
 # BrakTooth Proof of Concept
 
@@ -15,9 +17,9 @@
 
 * ##### Hardware Board: **ESP-WROVER-KIT**
   
-  <img src="./docs/esp32.jpg" style="zoom: 25%;" />
-
-
+<p align="left">
+<img src="./docs/esp32.jpg" width="200" height="auto" />
+</p>
 
 ## 2) Installation Instructions
 
