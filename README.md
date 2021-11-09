@@ -31,7 +31,7 @@ First, connect **ESP32-WROVER-KIT** to your PC. You can check if two serial port
 sudo apt install unzip python3-dev
 unzip esp32driver.zip # Extract esp32driver.zip (firmware package)
 cd release
-python3 firmware.py /dev/ttyUSB1 # Please change your serial port to match your ESP32 device.
+python3 flash firmware.py /dev/ttyUSB1 # Please change your serial port to match your ESP32 device.
 # You may need to press and hold the "Boot" button during the flashing process.
 cd ../
 ```
