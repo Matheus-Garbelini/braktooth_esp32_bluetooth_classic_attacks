@@ -5,6 +5,7 @@
 
 # BrakTooth Proof of Concept
 
+#### This research was partially supported by [NRF National Satellite of Excellence in Trustworthy Software Systems](https://www.comp.nus.edu.sg/~nsoe-tss/) <br/>(Project no. RGNSOE2001 and RGNSOE2101).
 
 ## 1) Requirements
 
