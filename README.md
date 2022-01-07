@@ -1,9 +1,11 @@
 
-<p align="center">
-<img src="./docs/braktooth_logo.png" alt="mode_master" width="600" height="auto" />
-</p>
 
 # BrakTooth Proof of Concept
+
+<p align="center">
+<img src="./docs/braktooth_logo.png" alt="mode_master" width="650" height="auto" />
+</p>
+
 
 #### This research was partially supported by [NRF National Satellite of Excellence in Trustworthy Software Systems](https://www.comp.nus.edu.sg/~nsoe-tss/) <br/>(Project no. RGNSOE2001 and RGNSOE2101).
 
