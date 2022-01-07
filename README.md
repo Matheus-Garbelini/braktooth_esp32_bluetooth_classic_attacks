@@ -6,9 +6,6 @@
 <img src="./docs/braktooth_logo.png" alt="mode_master" width="650" height="auto" />
 </p>
 
-
-#### This research was partially supported by [NRF National Satellite of Excellence in Trustworthy Software Systems](https://www.comp.nus.edu.sg/~nsoe-tss/) <br/>(Project no. RGNSOE2001 and RGNSOE2101).
-
 ## 1) Requirements
 
 [**BrakTooth**](https://www.braktooth.com/) requires a specific BT hardware development kit (**ESP-WROVER-KIT**) to be able to launch the attack since LMP packets cannot be sent from the host in normal Bluetooth Hardware.
@@ -218,4 +215,6 @@ The exploiter BT options are loaded from `configs/bt_config.json` on the followi
   - No MitM, General Bouding = 4
   - MitM, General Bouding = 5
 - **PIN** - 4 digit PIN number to be used during pairing (legacy pairing method).
+
+#### This research was partially supported by [NRF National Satellite of Excellence in Trustworthy Software Systems](https://www.comp.nus.edu.sg/~nsoe-tss/) <br/>(Project no. RGNSOE2001 and RGNSOE2101).
 
