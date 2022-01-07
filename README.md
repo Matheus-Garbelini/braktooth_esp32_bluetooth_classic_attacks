@@ -6,6 +6,11 @@
 <img src="./docs/braktooth_logo.png" alt="mode_master" width="650" height="auto" />
 </p>
 
+<p align="center">
+<img src="./docs/poc_setup.png" alt="mode_master" width="1000" height="auto" />
+</p>
+
+
 ## 1) Requirements
 
 [**BrakTooth**](https://www.braktooth.com/) requires a specific BT hardware development kit (**ESP-WROVER-KIT**) to be able to launch the attack since LMP packets cannot be sent from the host in normal Bluetooth Hardware.
