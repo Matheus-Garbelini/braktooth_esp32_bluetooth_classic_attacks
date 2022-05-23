@@ -47,8 +47,8 @@ cd ../
 # Install zstandard
 sudo apt install zstd
 # Extract the wdissector compressed file
-tar -I zstd -xf wdexploiter.tar.zst
-cd wdexploiter
+tar -I zstd -xf wdissector.tar.zst
+cd wdissector
 # Install package requirements for Ubuntu 18.04
 # It installs python3, nodejs, and system packages using apt-get
 ./requirements.sh
@@ -56,7 +56,93 @@ cd wdexploiter
 
 
 
-## 3) BT Exploits Usage Instructions
+## 3) Running BT fuzzer
+
+You can start the fuzzer as follows:
+
+```bash
+sudo bin/bt_fuzzer --scan # Scan for targets (BDAddress) for 15 seconds
+sudo bin/bt_fuzzer # Start fuzzer with graphical user interface (GUI)
+sudo bin/bt_fuzzer --no-gui --autostart --target=E8:D0:3C:94:2C:66  # Start fuzzer without GUI  
+```
+
+#### BT Command line options
+
+```bash
+sudo bin/bt_fuzzer --help
+Bluetooth Classic Fuzzer (Baseband, LMP, L2CAP, etc)
+Usage:
+  BT Fuzzer [OPTION...]
+
+      --help               Print help
+      --default-config     Start with default config
+      --autostart          Automatically start (default: true)
+      --no-gui             Start without GUI
+      --test-webview       Test GUI webview performance (requires internet)
+      --live-capture       Open wireshark in live capture mode
+      --exploit [=arg(=)]  Exploit Name
+      --list-exploits      List all exploits
+      --host arg           Host BDAddress
+      --host-port arg      Host serial port name of BT Interface 
+                           (ESP-WROVER-KIT)
+      --random_bdaddress   Enable/Disable host BDAddress randomization
+      --target arg         Target BDAddress (default: /dev/ttyUSB1)
+      --target-port arg    Target serial port name to detect crashes 
+                           (default: /dev/ttyUSB2)
+      --target-baud arg    Target baud rate (default: 115200)
+      --bounding           Enable/Disable Bounding (default: true)
+      --iocap arg          IO Capabilities (default: 3)
+      --authreq arg        Authentication Request flag (default: 3)
+      --scan               Scan BT Targets
+```
+
+
+
+## 3.1) Running Experimental Fuzzers:
+
+#### Wi-Fi AP Fuzzer (WIP)
+
+Wi-Fi AP Fuzzer requires use of [Alpha AWUS036AC Wi-Fi Dongle](https://www.amazon.com/Alfa-Long-Range-Dual-Band-Wireless-External/dp/B00MX57AO4/ref=sr_1_5?crid=3PN2VX74493Y3&keywords=AWUS036AC&qid=1643284766&sprefix=alpha+awus036ac%2Caps%2C310&sr=8-5) and installation of our custom driver for it:
+`cd src/drivers/wifi/rtl8812au && make -j4`. Then, the Wi-FI AP fuzzer will load the custom driver on program startup:
+
+```bash
+sudo bin/wifi_ap_fuzzer # Start fuzzer without graphical interface
+```
+
+* Wi-Fi options such as SSID, password, authentication and channel can be changed on `configs/wifi_ap_config.json`. 
+* Note that the parameter `WifiInterface` must match your dongle interface name, which is usually **wlan1**. 
+* By default, the fuzzer run its main thread on the core defined by the parameter `MainThreadCore=2`. Make sure to change this parameter value if you prefer to run the fuzzer in a different core.
+* Logs are saved on folder `logs/wifi_ap`
+
+##### Wi-Fi AP Command line options
+
+```bash
+Wi-Fi AP 802.11 Fuzzer (MAC, LLC, SNAP, EAPoL, etc)
+Usage:
+  Wi-Fi AP Fuzzer [OPTION...]
+
+      --help               Print help
+      --default-config     Start with default config
+      --autostart          Automatically start (default: true)
+      --exploit [=arg(=)]  Exploit Name
+      --fuzz               Enable/Disable fuzzing (default: true)
+```
+
+
+
+#### BLE Host Fuzzer (WIP)
+
+BLE Host fuzzer uses the same ESP32 development kit and can be run via the command
+
+```bash
+sudo bin/bthost_fuzzer # Start fuzzer without graphical interface
+```
+
+* Logs are saved on folder `logs/BTHost`
+
+
+
+## 4) BT Exploits Usage Instructions
 
 **Note:  For now, <u>Non-compliance</u> tests may not work for any BT device. We will improve the non-compliance scripts to validate generic BT devices as well as include more details on such tests during the upcoming weeks.**
 
