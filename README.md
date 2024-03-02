@@ -33,6 +33,8 @@
 First, connect **ESP32-WROVER-KIT** to your PC. You can check if two serial ports were added by running `ls /dev/ttyUSB*`. Normally, **ESP32-WROVER-KIT** adds two serial ports such as `/dev/ttyUSB0` and `/dev/ttyUSB1`. We want the second serial port, which is used for serial communication with **ESP32**.
 
 ```bash
+git clone https://github.com/Matheus-Garbelini/braktooth_esp32_bluetooth_classic_attacks --depth=1
+cd braktooth_esp32_bluetooth_classic_attacks
 sudo apt install unzip python3-dev
 unzip esp32driver.zip # Extract esp32driver.zip (firmware package)
 cd release
@@ -44,10 +46,12 @@ cd ../
 ##### B) Extract wdissector package and install system requirements
 
 ```bash
-# Install zstandard
-sudo apt install zstd
-# Extract the wdissector compressed file
-tar -I zstd -xf wdissector.tar.zst
+# Install zstandard, wget and unzip
+sudo apt install -y zstd wget unzip
+# Extract the full wdissector compressed release file from releases page
+wget https://github.com/Matheus-Garbelini/braktooth_esp32_bluetooth_classic_attacks/releases/download/v1.0.1/release.zip 
+unzip release.zip
+tar -I zstd wdissector.tar.zst
 cd wdissector
 # Install package requirements for Ubuntu 18.04
 # It installs python3, nodejs, and system packages using apt-get
